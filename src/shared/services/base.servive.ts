@@ -10,7 +10,7 @@ import {
 import { RootEntity } from '../entities/base.entity';
 
 export class BaseRepository<T extends RootEntity> {
-  constructor(private readonly repository: Repository<T>) {}
+  constructor(protected readonly repository: Repository<T>) {}
 
   public async findOne(options: FindOneOptions<T>): Promise<T> {
     return await this.repository.findOne(options);
