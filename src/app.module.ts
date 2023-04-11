@@ -7,20 +7,28 @@ import { DataSource } from 'typeorm';
 import { SharedModule } from './shared/shared.module';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'jmj0502',
-      password: 'admin',
-      database: 'test',
-      entities: [User, UserWallet],
-      synchronize: true,
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get<string>('DB_HOST'),
+        port: configService.get<number>('DB_PORT'),
+        password: configService.get<string>('DB_PASSWORD'),
+        username: configService.get<string>('DB_USERNAME'),
+        database: configService.get<string>('DB_NAME'),
+        entities: [User, UserWallet],
+        synchronize: true,
+      }),
     }),
     SharedModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     UsersModule,
   ],
   controllers: [AppController],
