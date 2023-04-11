@@ -57,17 +57,8 @@ $ yarn run test:e2e
 # test coverage
 $ yarn run test:cov
 ```
+### Purpose
 
-## Support
+This repo was created as a proof of concept for building generic repositories using `NestJS` and `TypeORM`. Despite its simplicity, it came fairly handy since it allowed me to gather decent insight on how to build a fairly powerful abstraction that can avoid a lots of code duplication while also providing a flexible and extensible interface.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+If you have similar needs, feel free to take a look at the code and reuse the same abstraction if needed.
